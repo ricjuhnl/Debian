@@ -18,7 +18,7 @@ mkdir -p /home/$username/.ssh
 mkdir -p /home/$username/.local/share/fonts
 mkdir -p /home/$username/.local/share/themes
 cp -R dotconfig/* /home/$username/.config/
-chown -R $username:$username /home/$username
+sudo chown -R $username:$username /home/$username
 
 # Installing Essential Programs
 sudo nala install zsh curl keychain kitty x11-xserver-utils unzip wget build-essential network-manager-openconnect-gnome -y
@@ -36,7 +36,7 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.z
 unzip FiraCode.zip -d /home/$username/.local/share/fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
 unzip Meslo.zip -d /home/$username/.local/share/fonts
-chown $username:$username /home/$username/.local/share/fonts/*
+sudo chown $username:$username /home/$username/.local/share/fonts/*
 
 # Reloading Font
 fc-cache -vf
@@ -57,11 +57,9 @@ curl -sS https://starship.rs/install.sh | sh
 cd /home/$username/
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 curl -L git.io/antigen > antigen.zsh
-chsh -s $(which zsh)
-
-cp dotfiles/.zshrc /home/$username/.zshrc
 
 cd $builddir
+cp dotfiles/.zshrc /home/$username/.zshrc
 
 # Copy ssh files
 mkdir -p ssh
@@ -69,4 +67,7 @@ cd ssh
 git clone https://github.com/ricjuhnl/dotfiles
 cd dotfiles/
 cp -r .ssh/ /home/$username/
-chown -R $username:$username /home/$username/.ssh
+sudo chown -R $username:$username /home/$username/.ssh
+
+#activate ZSH
+chsh -s $(which zsh)
