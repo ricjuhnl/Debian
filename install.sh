@@ -28,23 +28,23 @@ mv user-dirs.dirs /home/$username/.config
 chown -R $username:$username /home/$username
 
 # Installing Essential Programs 
-nala install feh kitty rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
+nala install zsh curl feh kitty picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
 # Installing Other less important Programs
-nala install neofetch flameshot psmisc mangohud vim lxappearance papirus-icon-theme lxappearance fonts-noto-color-emoji lightdm -y
+nala install neofetch flameshot micro papirus-icon-theme lxappearance fonts-noto-color-emoji pip -y
 
 # Download Nordic Theme
-cd /usr/share/themes/
+cd /home/$username/.local/share/themes/
 git clone https://github.com/EliverLara/Nordic.git
 
 # Installing fonts
 cd $builddir 
 nala install fonts-font-awesome -y
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-unzip FiraCode.zip -d /home/$username/.fonts
+unzip FiraCode.zip -d /home/$username/.local/share/fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-unzip Meslo.zip -d /home/$username/.fonts
-mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
-chown $username:$username /home/$username/.fonts/*
+unzip Meslo.zip -d /home/$username/.local/share/fonts
+mv dotfonts/fontawesome/otfs/*.otf /home/$username/.local/share/fonts/
+chown $username:$username /home/$username/.local/share/fonts/*
 
 # Reloading Font
 fc-cache -vf
@@ -64,10 +64,6 @@ curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
 nala update
 nala install brave-browser -y
-
-# Enable graphical login and change target from CLI to GUI
-systemctl enable lightdm
-systemctl set-default graphical.target
 
 # Beautiful bash
 git clone https://github.com/ChrisTitusTech/mybash
