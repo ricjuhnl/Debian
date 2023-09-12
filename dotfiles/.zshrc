@@ -129,7 +129,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias ps='ps auxf'
-alias apt='sudo apt'
+alias apt='nala'
 alias cls='clear'
 alias micro='micro -clipboard internal'
 alias s="kitty +kitten ssh"
@@ -147,5 +147,8 @@ bindkey . rationalise-dot
 
 #datahub network mount file
 source .datahub
+
+#add starship
+eval "$(starship init zsh)"
 
 PATH="$HOME/.local/bin:$PATH"
