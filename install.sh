@@ -31,6 +31,8 @@ cd Graphite-gtk-theme
 ./install.sh -s compact -c dark -l
 cd $builddir
 rm -rf Graphite-gtk-theme
+gsettings set org.gnome.desktop.interface gtk-theme Graphite-Dark-compact
+gsettings set org.gnome.desktop.wm.preferences theme Graphite-Dark-compact
 
 # Installing fonts
 cd $builddir
