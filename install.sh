@@ -7,6 +7,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 username=$(id -u -n 1000)
+mkdir /home/$username/build/
 builddir=/home/$username/build/
 
 # Update packages list and update system
@@ -18,33 +19,30 @@ apt install nala -y
 
 # Making .config and Moving config files and background to Pictures
 cd $builddir
+mkdir -p /home/$username/.themes
 mkdir -p /home/$username/.config
+mkdir -p /home/$username/.ssh
 mkdir -p /home/$username/.local/share/fonts
 mkdir -p /home/$username/.local/share/themes
-mkdir -p /home/$username/Pictures
-mkdir -p /home/$username/Pictures/backgrounds
 cp -R dotconfig/* /home/$username/.config/
-cp bg.jpg /home/$username/Pictures/backgrounds/
-mv user-dirs.dirs /home/$username/.config
 chown -R $username:$username /home/$username
 
-# Installing Essential Programs 
-nala install zsh curl keychain feh kitty picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
+# Installing Essential Programs
+nala install zsh curl keychain kitty x11-xserver-utils unzip wget build-essential network-manager-openconnect-gnome -y
 # Installing Other less important Programs
-nala install neofetch flameshot micro papirus-icon-theme lxappearance fonts-noto-color-emoji pip -y
+nala install neofetch flameshot micro papirus-icon-theme fonts-noto-color-emoji pip -y
 
 # Download Nordic Theme
-cd /home/$username/.local/share/themes/
+cd /home/$username/.themes
 git clone https://github.com/EliverLara/Nordic.git
 
 # Installing fonts
-cd $builddir 
+cd $builddir
 nala install fonts-font-awesome -y
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip
 unzip FiraCode.zip -d /home/$username/.local/share/fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
 unzip Meslo.zip -d /home/$username/.local/share/fonts
-mv dotfonts/fontawesome/otfs/*.otf /home/$username/.local/share/fonts/
 chown $username:$username /home/$username/.local/share/fonts/*
 
 # Reloading Font
@@ -63,28 +61,16 @@ rm -rf Nordzy-cursors
 cd /home/$username/
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 curl -L git.io/antigen > antigen.zsh
-cp dotfiles/.zshrc /home/$username/.zshrc
 chsh -s $(which zsh)
 
-# Install brave-browser
-# nala install apt-transport-https curl -y
-# curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-# echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
-# nala update
-# nala install brave-browser -y
+cp dotfiles/.zshrc /home/$username/
 
-
-
-# Beautiful bash
-git clone https://github.com/ChrisTitusTech/mybash
-cd mybash
-bash setup.sh
 cd $builddir
 
-# Setup ssh
+# Copy ssh files
 git clone https://github.com/ricjuhnl/dotfiles
-cd dotfiles
-cp .ssh/ /home/$username/.ssh/
+cd dotfiles/
+cp -r .ssh/ /home/$username/
 
-# Use nala
-bash scripts/usenala
+#delete build folder
+rm -r /home/$username/build/
