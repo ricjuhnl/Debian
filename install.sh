@@ -25,9 +25,12 @@ sudo nala install zsh curl keychain kitty x11-xserver-utils unzip wget build-ess
 # Installing Other less important Programs
 sudo nala install neofetch flameshot micro papirus-icon-theme fonts-noto-color-emoji pip -y
 
-# Download Nordic Theme
-cd /usr/share/themes
-git clone https://github.com/EliverLara/Nordic.git
+# Download and install Theme
+git clone https://github.com/vinceliuice/Graphite-gtk-theme
+cd Graphite-gtk-theme
+./install.sh -s compact -c dark -l
+cd $builddir
+rm -rf Graphite-gtk-theme
 
 # Installing fonts
 cd $builddir
