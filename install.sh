@@ -19,7 +19,8 @@ apt install nala -y
 # Making .config and Moving config files and background to Pictures
 cd $builddir
 mkdir -p /home/$username/.config
-mkdir -p /home/$username/.fonts
+mkdir -p /home/$username/.local/share/fonts
+mkdir -p /home/$username/.local/share/themes
 mkdir -p /home/$username/Pictures
 mkdir -p /home/$username/Pictures/backgrounds
 cp -R dotconfig/* /home/$username/.config/
@@ -28,7 +29,7 @@ mv user-dirs.dirs /home/$username/.config
 chown -R $username:$username /home/$username
 
 # Installing Essential Programs 
-nala install zsh curl feh kitty picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
+nala install zsh curl keychain feh kitty picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
 # Installing Other less important Programs
 nala install neofetch flameshot micro papirus-icon-theme lxappearance fonts-noto-color-emoji pip -y
 
@@ -58,18 +59,32 @@ cd Nordzy-cursors
 cd $builddir
 rm -rf Nordzy-cursors
 
+# Configure Oh-My-Zsh and Antigen
+cd /home/$username/
+sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+curl -L git.io/antigen > antigen.zsh
+cp dotfiles/.zshrc /home/$username/
+chsh -s $(which zsh)
+
 # Install brave-browser
-nala install apt-transport-https curl -y
-curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
-nala update
-nala install brave-browser -y
+# nala install apt-transport-https curl -y
+# curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+# echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
+# nala update
+# nala install brave-browser -y
+
+
 
 # Beautiful bash
 git clone https://github.com/ChrisTitusTech/mybash
 cd mybash
 bash setup.sh
 cd $builddir
+
+# Setup ssh
+git clone https://github.com/ricjuhnl/dotfiles
+cd dotfiles
+cp .ssh /home/$username/
 
 # Use nala
 bash scripts/usenala
