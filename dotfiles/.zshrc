@@ -114,8 +114,15 @@ if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='micro'
  fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# Set Nala as default package manager
+sudo() {
+  if [ "$1" = "apt" ]; then
+    shift
+    command sudo nala "$@"
+  else
+    command sudo "$@"
+  fi
+}
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -129,10 +136,11 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias ps='ps auxf'
-alias apt='nala'
+alias apt='sudo apt'
 alias cls='clear'
 alias micro='micro -clipboard internal'
 alias s="kitty +kitten ssh"
+alias sudo='sudo '
 
 # quick switch directories
 rationalise-dot() {
