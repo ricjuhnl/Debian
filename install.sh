@@ -50,9 +50,6 @@ cd Nordzy-cursors
 cd $builddir
 rm -rf Nordzy-cursors
 
-# Install starship
-curl -sS https://starship.rs/install.sh | sh
-
 # Configure Oh-My-Zsh and Antigen
 cd /home/$username/
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
@@ -70,4 +67,4 @@ cp -r .ssh/ /home/$username/
 sudo chown -R $username:$username /home/$username/.ssh
 
 #activate ZSH
-chsh -s $(which zsh)
+sudo usermod --shell /bin/zsh $username
