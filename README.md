@@ -6,6 +6,6 @@ Debian customizations from Chris Titus Tech
 ```
 git clone
 cd Debian
-sudo ./install.sh
+./install.sh
 ```
 
