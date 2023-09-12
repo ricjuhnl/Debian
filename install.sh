@@ -16,7 +16,7 @@ mkdir -p /home/$username/.themes
 mkdir -p /home/$username/.config
 mkdir -p /home/$username/.ssh
 mkdir -p /home/$username/.local/share/fonts
-mkdir -p /home/$username/.local/share/themes
+sudo mkdir /usr/share/themes
 cp -R dotconfig/* /home/$username/.config/
 sudo chown -R $username:$username /home/$username
 
@@ -26,7 +26,7 @@ sudo nala install zsh curl keychain kitty x11-xserver-utils unzip wget build-ess
 sudo nala install neofetch flameshot micro papirus-icon-theme fonts-noto-color-emoji pip -y
 
 # Download Nordic Theme
-cd /home/$username/.themes
+cd /usr/share/themes
 git clone https://github.com/EliverLara/Nordic.git
 
 # Installing fonts
@@ -56,7 +56,8 @@ sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/ins
 curl -L git.io/antigen > antigen.zsh
 
 cd $builddir
-cp dotfiles/.zshrc /home/$username/.zshrc
+cp dotfiles/.zshrc /home/$username/
+cp dotfiles/.datahub /home/$username/
 
 # Copy ssh files
 mkdir -p ssh

@@ -1,0 +1,28 @@
+P_NUMBER_HERE=P70085277
+UNIX_USERNAME=rjuhasz
+
+mount_beheer () {
+        failed=1
+        if [[ "$1" == "write-enabled" ]]; then
+                echo "Mounting with write permissions! Be careful."
+                sudo mount -t cifs //unimaas.nl/projects/FacBurFHML /mnt/datahub_Beheer -o user=$P_NUMBER_HERE,workgroup=unimaas.nl,iocharset=utf8,uid=$UNIX_USERNAME,gid=$UNIX_USERNAME,vers=2.0,rw
+                failed=$?
+        else
+                echo "Read-only mount."
+                sudo mount -t cifs //unimaas.nl/projects/FacBurFHML /mnt/datahub_Beheer -o user=$P_NUMBER_HERE,workgroup=unimaas.nl,iocharset=utf8,uid=$UNIX_USERNAME,gid=$UNIX_USERNAME,vers=2.0,ro
+                failed=$?
+        fi
+        if [[ $failed -eq 0 ]]; then
+                if read -q "choice?Want to open keepass? [N/y]"; then
+
+                                unshare -r -n keepassxc /mnt/datahub_Beheer/Datahub_beheer/RITbeheer.kdbx &
+                else
+                                echo
+                                echo "'$choice' Not opening keepass. Exiting..."
+                fi
+        fi
+}
+
+umount_beheer () {
+        sudo umount /mnt/datahub_Beheer
+}

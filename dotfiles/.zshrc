@@ -148,7 +148,4 @@ bindkey . rationalise-dot
 #datahub network mount file
 source .datahub
 
-#add starship
-eval "$(starship init zsh)"
-
 PATH="$HOME/.local/bin:$PATH"
