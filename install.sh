@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 username=$(id -u -n 1000)
-builddir=$(pwd)
+builddir=/home/$username/build/
 
 # Update packages list and update system
 apt update
@@ -40,9 +40,9 @@ git clone https://github.com/EliverLara/Nordic.git
 # Installing fonts
 cd $builddir 
 nala install fonts-font-awesome -y
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip
 unzip FiraCode.zip -d /home/$username/.local/share/fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
 unzip Meslo.zip -d /home/$username/.local/share/fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/$username/.local/share/fonts/
 chown $username:$username /home/$username/.local/share/fonts/*
@@ -63,7 +63,7 @@ rm -rf Nordzy-cursors
 cd /home/$username/
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 curl -L git.io/antigen > antigen.zsh
-cp dotfiles/.zshrc /home/$username/
+cp dotfiles/.zshrc /home/$username/.zshrc
 chsh -s $(which zsh)
 
 # Install brave-browser
@@ -84,7 +84,7 @@ cd $builddir
 # Setup ssh
 git clone https://github.com/ricjuhnl/dotfiles
 cd dotfiles
-cp .ssh /home/$username/
+cp .ssh/ /home/$username/.ssh/
 
 # Use nala
 bash scripts/usenala
