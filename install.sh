@@ -51,13 +51,16 @@ cd $builddir
 rm -rf Nordzy-cursors
 
 # Install flatpak packages
-flatpak install flathub com.visualstudio.code -y
 flatpak install flathub com.bitwarden.desktop -y
 flatpak install flathub org.keepassxc.KeePassXC -y
 
 # download and install Vivaldi
 wget https://downloads.vivaldi.com/stable/vivaldi-stable_6.2.3105.48-1_amd64.deb -O vivaldi.deb
-sudo apt install ./vivaldi.deb
+sudo apt install ./vivaldi.deb -y
+
+# download and install VScode
+wget https://go.microsoft.com/fwlink/?LinkID=760868 -O code.deb
+sudo apt install ./vivaldi.deb -y
 
 # Configure Oh-My-Zsh and Antigen
 cd /home/$username/
