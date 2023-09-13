@@ -7,26 +7,30 @@ builddir=$(pwd)
 sudo apt update
 sudo apt upgrade -y
 
+# Prompt the user for the Git token
+read -p "Enter your Git token: " GIT_TOKEN
+
 # Install nala
 sudo apt install nala -y
 
+# Install flatpak
+sudo apt install flatpak -y
+
+# Add flatpak repo
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 # Making .config and Moving config files and background to Pictures
 cd $builddir
-mkdir -p /home/$username/.themes
 mkdir -p /home/$username/.config
 mkdir -p /home/$username/.ssh
 mkdir -p /home/$username/.local/share/fonts
-sudo mkdir /usr/share/themes
 cp -R dotconfig/* /home/$username/.config/
 sudo chown -R $username:$username /home/$username
 
 # Installing Essential Programs
-sudo nala install zsh curl keychain kitty x11-xserver-utils unzip wget build-essential network-manager-openconnect -y
+sudo nala install zsh curl keychain x11-xserver-utils unzip wget build-essential network-manager-openconnect -y
 # Installing Other less important Programs
-sudo nala install neofetch flameshot micro papirus-icon-theme fonts-noto-color-emoji pip ostree appstream-util sassc flatpak -y
-
-# Download and install Theme
-
+sudo nala install neofetch flameshot kitty micro fonts-noto-color-emoji pip appstream-util -y
 
 # Installing fonts
 cd $builddir
@@ -49,6 +53,16 @@ cd Nordzy-cursors
 cd $builddir
 rm -rf Nordzy-cursors
 
+# Install flatpak packages
+flatpak install flathub com.visualstudio.code -y
+flatpak install flathub com.bitwarden.desktop -y
+flatpak install flathub org.keepassxc.KeePassXC -y
+
+# download and install Vivaldi
+wget https://downloads.vivaldi.com/stable/vivaldi-stable_6.2.3105.48-1_amd64.deb -O vivaldi.deb
+sudo dpkg -i vivaldi.deb
+rm vivaldi.deb
+
 # Configure Oh-My-Zsh and Antigen
 cd /home/$username/
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
@@ -61,10 +75,11 @@ cp dotfiles/.datahub /home/$username/
 # Copy ssh files
 mkdir -p ssh
 cd ssh
-git clone https://github.com/ricjuhnl/dotfiles
+git clone https://$GIT_TOKEN@github.com/ricjuhnl/dotfiles
 cd dotfiles/
 cp -r .ssh/ /home/$username/
-sudo chown -R $username:$username /home/$username/.ssh
+cd $builddir
+rm -rf ssh
 
 #activate ZSH
 sudo usermod --shell /bin/zsh $username
