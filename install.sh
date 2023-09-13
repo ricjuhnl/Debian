@@ -21,18 +21,12 @@ cp -R dotconfig/* /home/$username/.config/
 sudo chown -R $username:$username /home/$username
 
 # Installing Essential Programs
-sudo nala install zsh curl keychain kitty x11-xserver-utils unzip wget build-essential network-manager-openconnect-gnome gtk2-engines-murrine -y
+sudo nala install zsh curl keychain kitty x11-xserver-utils unzip wget build-essential network-manager-openconnect -y
 # Installing Other less important Programs
-sudo nala install neofetch flameshot micro papirus-icon-theme fonts-noto-color-emoji pip ostree appstream-util sassc -y
+sudo nala install neofetch flameshot micro papirus-icon-theme fonts-noto-color-emoji pip ostree appstream-util sassc flatpak -y
 
 # Download and install Theme
-git clone https://github.com/vinceliuice/Graphite-gtk-theme
-cd Graphite-gtk-theme
-./install.sh -s compact -c dark -l
-cd $builddir
-rm -rf Graphite-gtk-theme
-gsettings set org.gnome.desktop.interface gtk-theme Graphite-Dark-compact
-gsettings set org.gnome.desktop.wm.preferences theme Graphite-Dark-compact
+
 
 # Installing fonts
 cd $builddir
