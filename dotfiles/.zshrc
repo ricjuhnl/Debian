@@ -137,6 +137,7 @@ alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias ps='ps auxf'
 alias apt='sudo apt'
+alias nala='sudo nala'
 alias cls='clear'
 alias micro='micro -clipboard internal'
 alias s="kitty +kitten ssh"
