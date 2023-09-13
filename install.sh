@@ -88,7 +88,10 @@ sudo apt update
 # Install docker components
 sudo nala install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
-#activate ZSH
+# Add user to docker group
+sudo usermod -aG docker $username
+
+# Activate ZSH
 sudo usermod --shell /bin/zsh $username
 
 # Prompt the user to reboot
