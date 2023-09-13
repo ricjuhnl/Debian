@@ -60,8 +60,7 @@ flatpak install flathub org.keepassxc.KeePassXC -y
 
 # download and install Vivaldi
 wget https://downloads.vivaldi.com/stable/vivaldi-stable_6.2.3105.48-1_amd64.deb -O vivaldi.deb
-sudo dpkg -i vivaldi.deb
-rm vivaldi.deb
+sudo apt install ./vivaldi.deb
 
 # Configure Oh-My-Zsh and Antigen
 cd /home/$username/
@@ -72,10 +71,26 @@ cd $builddir
 cp dotfiles/.zshrc /home/$username/
 cp dotfiles/.datahub /home/$username/
 
+# Add Docker's official GPG key:
+sudo apt install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+
+# Install docker components
+sudo nala install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
 # Copy ssh files
 mkdir -p ssh
 cd ssh
-git clone https://$GIT_TOKEN@github.com/ricjuhnl/dotfiles
+git clone https://ricjuhnl:$GIT_TOKEN@github.com/ricjuhnl/dotfiles
 cd dotfiles/
 cp -r .ssh/ /home/$username/
 cd $builddir
