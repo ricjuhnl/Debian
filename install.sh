@@ -16,10 +16,9 @@ sudo apt install flatpak -y
 # Add flatpak repo
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# Making .config and Moving config files and background to Pictures
+# Making .config and Moving config files
 cd $builddir
 mkdir -p /home/$username/.config
-mkdir -p /home/$username/.ssh
 mkdir -p /home/$username/.local/share/fonts
 cp -R dotconfig/* /home/$username/.config/
 sudo chown -R $username:$username /home/$username
