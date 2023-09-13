@@ -7,9 +7,6 @@ builddir=$(pwd)
 sudo apt update
 sudo apt upgrade -y
 
-# Prompt the user for the Git token
-read -p "Enter your Git token: " GIT_TOKEN
-
 # Install nala
 sudo apt install nala -y
 
@@ -86,15 +83,6 @@ sudo apt update
 
 # Install docker components
 sudo nala install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-
-# Copy ssh files
-mkdir -p ssh
-cd ssh
-git clone https://ricjuhnl:$GIT_TOKEN@github.com/ricjuhnl/dotfiles
-cd dotfiles/
-cp -r .ssh/ /home/$username/
-cd $builddir
-rm -rf ssh
 
 #activate ZSH
 sudo usermod --shell /bin/zsh $username
