@@ -83,3 +83,13 @@ rm -rf ssh
 
 #activate ZSH
 sudo usermod --shell /bin/zsh $username
+
+# Prompt the user to reboot
+read -p "Reboot now? (yes/no): " REBOOT_CHOICE
+
+# Check the user's choice and reboot if they entered "yes"
+if [ "$REBOOT_CHOICE" = "yes" ]; then
+    sudo reboot
+else
+    echo "You chose not to reboot. Please manually reboot your system if necessary."
+fi
