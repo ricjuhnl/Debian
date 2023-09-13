@@ -24,7 +24,7 @@ cp -R dotconfig/* /home/$username/.config/
 sudo chown -R $username:$username /home/$username
 
 # Installing Essential Programs
-sudo nala install zsh curl keychain x11-xserver-utils unzip wget build-essential network-manager-openconnect -y
+sudo nala install zsh curl picom keychain x11-xserver-utils unzip wget build-essential network-manager-openconnect -y
 # Installing Other less important Programs
 sudo nala install neofetch flameshot kitty micro fonts-noto-color-emoji pip appstream-util -y
 
