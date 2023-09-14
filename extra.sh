@@ -12,5 +12,9 @@ git clone https://ricjuhnl:$GIT_TOKEN@github.com/ricjuhnl/dotfiles
 cd dotfiles/
 cp .git-credentials /home/$username/
 cp .gitconfig /home/$username/
-cp -r files/ /home/$username/Documents
+cp files/avatar.jpg /home/$username/Pictures
+cp -r files/'Camera Roll' /home/$username/Pictures
+cp files/Ricardo.kdbx /home/$username/Documents
+cp files/'smb keepass.txt' /home/$username/Documents
+cp -r files/Maintenance /home/$username/Documents
 cp -r .ssh/ /home/$username/
