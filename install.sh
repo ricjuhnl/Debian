@@ -26,7 +26,7 @@ sudo chown -R $username:$username /home/$username
 # Installing Essential Programs
 sudo nala install zsh curl picom keychain x11-xserver-utils unzip wget build-essential network-manager-openconnect -y
 # Installing Other less important Programs
-sudo nala install neofetch flameshot kitty micro fonts-noto-color-emoji pip appstream-util -y
+sudo nala install neofetch flameshot kitty micro fonts-noto-color-emoji pip appstream-util paper-icon-theme -y
 
 # Installing fonts
 cd $builddir
@@ -48,6 +48,13 @@ cd Nordzy-cursors
 ./install.sh
 cd $builddir
 rm -rf Nordzy-cursors
+
+# Download and copy Cinnamon theme
+git clone https://github.com/paullinuxthemer/McOS-Mint-Cinnamon-Edition
+cd McOS-Mint-Cinnamon-Edition
+sudo cp -r McOS-MJV-Cinnamon-Edition-2.0 /usr/share/themes
+cd $builddir
+rm -rf McOS-Mint-Cinnamon-Edition
 
 # Install flatpak packages
 flatpak install flathub com.bitwarden.desktop -y
