@@ -81,10 +81,6 @@ cd /home/$username/
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 curl -L git.io/antigen > antigen.zsh
 
-cd $builddir
-cp dotfiles/.zshrc /home/$username/
-cp dotfiles/.datahub /home/$username/
-
 # Add Docker's official GPG key:
 sudo apt install ca-certificates curl gnupg
 sudo install -m 0755 -d /etc/apt/keyrings
