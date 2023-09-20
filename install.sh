@@ -24,7 +24,7 @@ cp -R dotconfig/* /home/$username/.config/
 sudo chown -R $username:$username /home/$username
 
 # Installing Essential Programs
-sudo nala install zsh curl picom keychain x11-xserver-utils unzip wget build-essential network-manager-openconnect -y
+sudo nala install zsh curl picom keychain x11-xserver-utils unzip wget build-essential network-manager-openconnect openvpn -y
 # Installing Other less important Programs
 sudo nala install neofetch flameshot kitty micro fonts-noto-color-emoji pip appstream-util paper-icon-theme -y
 
@@ -39,6 +39,7 @@ sudo chown $username:$username /home/$username/.local/share/fonts/*
 
 # Reloading Font
 fc-cache -vf
+
 # Removing zip Files
 rm ./FiraCode.zip ./Meslo.zip
 
@@ -59,6 +60,7 @@ rm -rf McOS-Mint-Cinnamon-Edition
 # Install flatpak packages
 flatpak install flathub com.bitwarden.desktop -y
 flatpak install flathub org.keepassxc.KeePassXC -y
+flatpak install flathub us.zoom.Zoom -y
 
 # download and install Vivaldi
 wget https://downloads.vivaldi.com/stable/vivaldi-stable_6.2.3105.48-1_amd64.deb -O vivaldi.deb
@@ -69,6 +71,10 @@ rm -rf vivaldi.deb
 wget https://go.microsoft.com/fwlink/?LinkID=760868 -O code.deb
 sudo apt install ./code.deb -y
 rm -rf code.deb
+
+# install Slack
+cd deb
+sudo apt install ./slack.deb -y
 
 # Configure Oh-My-Zsh and Antigen
 cd /home/$username/
