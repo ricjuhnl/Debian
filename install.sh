@@ -51,11 +51,11 @@ cd $builddir
 rm -rf Nordzy-cursors
 
 # Download and copy Cinnamon theme
-git clone https://github.com/paullinuxthemer/McOS-Mint-Cinnamon-Edition
-cd McOS-Mint-Cinnamon-Edition
-sudo cp -r McOS-MJV-Cinnamon-Edition-2.0 /usr/share/themes
-cd $builddir
-rm -rf McOS-Mint-Cinnamon-Edition
+# git clone https://github.com/paullinuxthemer/McOS-Mint-Cinnamon-Edition
+# cd McOS-Mint-Cinnamon-Edition
+# sudo cp -r McOS-MJV-Cinnamon-Edition-2.0 /usr/share/themes
+# cd $builddir
+# rm -rf McOS-Mint-Cinnamon-Edition
 
 # Install flatpak packages
 flatpak install flathub com.bitwarden.desktop -y
@@ -108,10 +108,8 @@ sudo usermod -aG docker $username
 sudo usermod --shell /bin/zsh $username
 
 # Prompt the user to reboot
-read -p "Reboot now? (yes/no): " REBOOT_CHOICE
-
-# Check the user's choice and reboot if they entered "yes"
-if [ "$REBOOT_CHOICE" = "yes" ]; then
+read -p "Reboot now? (y/n): " REBOOT_CHOICE
+if [ "$REBOOT_CHOICE" = "y" ]; then
     sudo reboot
 else
     echo "You chose not to reboot. Please manually reboot your system if necessary."
