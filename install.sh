@@ -24,7 +24,7 @@ cp -R dotconfig/* /home/$username/.config/
 sudo chown -R $username:$username /home/$username
 
 # Installing Essential Programs
-sudo nala install zsh curl picom keychain x11-xserver-utils unzip wget build-essential network-manager-openconnect openvpn -y
+sudo nala install zsh curl picom keychain x11-xserver-utils unzip wget build-essential network-manager-openconnect network-manager-openvpn network-manager-vpnc -y
 # Installing Other less important Programs
 sudo nala install neofetch flameshot kitty micro fonts-noto-color-emoji pip appstream-util paper-icon-theme -y
 
@@ -73,8 +73,8 @@ sudo apt install ./code.deb -y
 rm -rf code.deb
 
 # install Slack
-cd deb
-sudo apt install ./slack.deb -y
+# cd deb
+# sudo apt install ./slack.deb -y
 
 # Configure Oh-My-Zsh and Antigen
 cd /home/$username/
