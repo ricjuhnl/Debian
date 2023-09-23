@@ -26,7 +26,7 @@ sudo chown -R $username:$username /home/$username
 # Installing Essential Programs
 sudo nala install zsh curl picom keychain x11-xserver-utils unzip wget build-essential network-manager-openconnect network-manager-openvpn network-manager-vpnc -y
 # Installing Other less important Programs
-sudo nala install neofetch flameshot kitty micro fonts-noto-color-emoji pip appstream-util paper-icon-theme -y
+sudo nala install neofetch flameshot kitty micro fonts-noto-color-emoji pip appstream-util paper-icon-theme nitrogen -y
 
 # Installing fonts
 cd $builddir
