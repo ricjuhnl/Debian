@@ -20,7 +20,6 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 cd $builddir
 mkdir -p /home/$username/.config
 mkdir -p /home/$username/.local/share/fonts
-cp -R dotconfig/* /home/$username/.config/
 sudo chown -R $username:$username /home/$username
 
 # Installing Essential Programs
