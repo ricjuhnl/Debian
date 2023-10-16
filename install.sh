@@ -16,8 +16,7 @@ sudo apt install flatpak -y
 # Add flatpak repo
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# Making .config and Moving config files
-cd $builddir
+# Making folders
 mkdir -p /home/$username/.config
 mkdir -p /home/$username/.local/share/fonts
 sudo chown -R $username:$username /home/$username
@@ -25,7 +24,7 @@ sudo chown -R $username:$username /home/$username
 # Installing Essential Programs
 sudo nala install zsh curl picom keychain x11-xserver-utils unzip wget build-essential cifs-utils openconnect network-manager-openconnect network-manager-openconnect-gnome network-manager-openvpn network-manager-vpnc -y
 # Installing Other less important Programs
-sudo nala install nfs-common sshfs neofetch flameshot kitty micro fonts-noto-color-emoji pip appstream-util papirus-icon-theme nitrogen -y
+sudo nala install nfs-common sshfs neofetch kitty micro fonts-noto-color-emoji pip appstream-util papirus-icon-theme nitrogen -y
 
 # Installing fonts
 cd $builddir
@@ -61,10 +60,10 @@ flatpak install flathub com.bitwarden.desktop -y
 flatpak install flathub org.keepassxc.KeePassXC -y
 flatpak install flathub us.zoom.Zoom -y
 
-# download and install Vivaldi
-wget https://downloads.vivaldi.com/stable/vivaldi-stable_6.2.3105.48-1_amd64.deb -O vivaldi.deb
-sudo apt install ./vivaldi.deb -y
-rm -rf vivaldi.deb
+# Install Vivaldi
+wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | sudo apt-key add -
+sudo add-apt-repository 'deb https://repo.vivaldi.com/archive/deb/ stable main' 
+sudo apt update && sudo apt install vivaldi-stable
 
 # download and install VScode
 wget https://go.microsoft.com/fwlink/?LinkID=760868 -O code.deb
@@ -72,8 +71,8 @@ sudo apt install ./code.deb -y
 rm -rf code.deb
 
 # install Slack
-# cd deb
-# sudo apt install ./slack.deb -y
+cd deb
+sudo apt install ./slack.deb -y
 
 # Configure Oh-My-Zsh and Antigen
 cd /home/$username/
