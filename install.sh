@@ -7,9 +7,6 @@ builddir=$(pwd)
 sudo apt update
 sudo apt upgrade -y
 
-# Install nala
-sudo apt install nala -y
-
 # Install flatpak
 sudo apt install flatpak -y
 
@@ -22,13 +19,13 @@ mkdir -p /home/$username/.local/share/fonts
 sudo chown -R $username:$username /home/$username
 
 # Installing Essential Programs
-sudo nala install zsh curl picom keychain x11-xserver-utils unzip wget build-essential cifs-utils openconnect network-manager-openconnect network-manager-openconnect-gnome network-manager-openvpn network-manager-vpnc -y
+sudo apt install zsh curl picom keychain x11-xserver-utils unzip wget build-essential cifs-utils openconnect network-manager-openconnect network-manager-openconnect-gnome network-manager-openvpn network-manager-vpnc -y
 # Installing Other less important Programs
-sudo nala install nfs-common sshfs neofetch kitty micro fonts-noto-color-emoji pip appstream-util papirus-icon-theme nitrogen -y
+sudo apt install nfs-common sshfs neofetch kitty micro fonts-noto-color-emoji pip appstream-util papirus-icon-theme nitrogen -y
 
 # Installing fonts
 cd $builddir
-sudo nala install fonts-font-awesome -y
+sudo apt install fonts-font-awesome -y
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip
 unzip FiraCode.zip -d /home/$username/.local/share/fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
