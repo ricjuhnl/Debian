@@ -45,13 +45,6 @@ cd Nordzy-cursors
 cd $builddir
 rm -rf Nordzy-cursors
 
-# Download and copy Cinnamon theme
-# git clone https://github.com/paullinuxthemer/McOS-Mint-Cinnamon-Edition
-# cd McOS-Mint-Cinnamon-Edition
-# sudo cp -r McOS-MJV-Cinnamon-Edition-2.0 /usr/share/themes
-# cd $builddir
-# rm -rf McOS-Mint-Cinnamon-Edition
-
 # Install flatpak packages
 flatpak install flathub com.bitwarden.desktop -y
 flatpak install flathub org.keepassxc.KeePassXC -y
@@ -70,14 +63,6 @@ rm -rf code.deb
 # install Slack
 cd deb
 sudo apt install ./slack.deb -y
-
-# Configure Oh-My-Zsh and Antigen
-cd /home/$username/
-sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-curl -L git.io/antigen > antigen.zsh
-
-# Activate ZSH
-sudo usermod --shell /bin/zsh $username
 
 # Prompt the user to reboot
 read -p "Reboot now? (y/n): " REBOOT_CHOICE
