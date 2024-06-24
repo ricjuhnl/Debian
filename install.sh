@@ -28,15 +28,13 @@ cd $builddir
 sudo apt install fonts-font-awesome -y
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip
 unzip FiraCode.zip -d /home/$username/.local/share/fonts
-wget https://github.com/microsoft/cascadia-code/releases/download/v2404.23/CascadiaCode-2404.23.zip
-unzip CascadiaCode-2404.23.zip -d /home/$username/.local/share/fonts
 sudo chown $username:$username /home/$username/.local/share/fonts/*
 
 # Reloading Font
 fc-cache -vf
 
 # Removing zip Files
-rm ./FiraCode.zip ./CascadiaCode-2404.23.zip
+rm ./FiraCode.zip
 
 # Install Nordzy cursor
 git clone https://github.com/alvatip/Nordzy-cursors
@@ -49,20 +47,6 @@ rm -rf Nordzy-cursors
 flatpak install flathub com.bitwarden.desktop -y
 flatpak install flathub org.keepassxc.KeePassXC -y
 flatpak install flathub us.zoom.Zoom -y
-
-# Install Vivaldi
-wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | sudo apt-key add -
-sudo add-apt-repository 'deb https://repo.vivaldi.com/archive/deb/ stable main' 
-sudo apt update && sudo apt install vivaldi-stable
-
-# download and install VScode
-wget https://go.microsoft.com/fwlink/?LinkID=760868 -O code.deb
-sudo apt install ./code.deb -y
-rm -rf code.deb
-
-# install Slack
-cd deb
-sudo apt install ./slack.deb -y
 
 # Prompt the user to reboot
 read -p "Reboot now? (y/n): " REBOOT_CHOICE
