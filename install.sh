@@ -21,7 +21,7 @@ sudo chown -R $username:$username /home/$username
 # Installing Essential Programs
 sudo apt install zsh curl picom keychain x11-xserver-utils unzip wget build-essential cifs-utils openconnect network-manager-openconnect network-manager-openconnect-gnome -y
 # Installing Other less important Programs
-sudo apt install nfs-common sshfs neofetch kitty micro fonts-noto-color-emoji pip appstream-util papirus-icon-theme -y
+sudo apt install nfs-common sshfs fastfetch kitty micro fonts-noto-color-emoji pip appstream-util papirus-icon-theme -y
 
 # Installing fonts
 cd $builddir
